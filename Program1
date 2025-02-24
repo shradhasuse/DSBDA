@@ -1,0 +1,632 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "id": "4873037e-2c5e-44a6-b23e-a248205a9f87",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Requirement already satisfied: pandas in c:\\users\\osman\\appdata\\local\\programs\\python\\python313\\lib\\site-packages (2.2.3)\n",
+      "Requirement already satisfied: numpy>=1.26.0 in c:\\users\\osman\\appdata\\local\\programs\\python\\python313\\lib\\site-packages (from pandas) (2.2.2)\n",
+      "Requirement already satisfied: python-dateutil>=2.8.2 in c:\\users\\osman\\appdata\\local\\programs\\python\\python313\\lib\\site-packages (from pandas) (2.9.0.post0)\n",
+      "Requirement already satisfied: pytz>=2020.1 in c:\\users\\osman\\appdata\\local\\programs\\python\\python313\\lib\\site-packages (from pandas) (2024.2)\n",
+      "Requirement already satisfied: tzdata>=2022.7 in c:\\users\\osman\\appdata\\local\\programs\\python\\python313\\lib\\site-packages (from pandas) (2025.1)\n",
+      "Requirement already satisfied: six>=1.5 in c:\\users\\osman\\appdata\\local\\programs\\python\\python313\\lib\\site-packages (from python-dateutil>=2.8.2->pandas) (1.17.0)\n",
+      "Note: you may need to restart the kernel to use updated packages.\n"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\n",
+      "[notice] A new release of pip is available: 24.3.1 -> 25.0.1\n",
+      "[notice] To update, run: python.exe -m pip install --upgrade pip\n"
+     ]
+    }
+   ],
+   "source": [
+    "pip install pandas"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "id": "a4147634-7307-4b11-b80f-7b453ab50420",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import pandas as pd"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "id": "75588697-4ee4-4aad-80df-8e35213091af",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "data = {\n",
+    "    \"Math\": [85, 78, 92, 60, 74, 88],\n",
+    "    \"Science\": [80, 82, 89, 65, 70, 90],\n",
+    "    \"English\": [75, 85, 78, 55, 72, 88],\n",
+    "    \"History\": [70, 75, 80, 50, 68, 82]\n",
+    "}"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "id": "683099d1-cf16-4119-8ceb-3ef90afbde3d",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "students = [\"Student1\", \"Student2\", \"Student3\", \"Student4\", \"Student5\", \"Student6\"]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "id": "dbacf3b0-d5bd-40c3-9b65-5635662fe0b6",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "exam_scores = pd.DataFrame(data, index=students)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "id": "e3f6a559-f30b-4be3-905c-03690ee9848e",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "First three rows:\n",
+      "           Math  Science  English  History\n",
+      "Student1    85       80       75       70\n",
+      "Student2    78       82       85       75\n",
+      "Student3    92       89       78       80\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(\"First three rows:\\n\", exam_scores.head(3))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "id": "b8616738-01ed-4caa-9ea0-c8371b882585",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Total students: 6, Total subjects: 4\n"
+     ]
+    }
+   ],
+   "source": [
+    "num_students, num_subjects = exam_scores.shape\n",
+    "print(f\"Total students: {num_students}, Total subjects: {num_subjects}\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "id": "f8d1cd3f-8e5b-43d6-bcba-ec25e5367fbd",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Total students: 6, Total subjects: 4\n"
+     ]
+    }
+   ],
+   "source": [
+    "num_students, num_subjects = exam_scores.shape\n",
+    "print(f\"Total students: {num_students}, Total subjects: {num_subjects}\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "id": "53693844-34ef-44ae-8737-ad940be325d5",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Subjects: ['Math', 'Science', 'English', 'History']\n",
+      "Students: ['Student1', 'Student2', 'Student3', 'Student4', 'Student5', 'Student6']\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(\"Subjects:\", list(exam_scores.columns))\n",
+    "print(\"Students:\", list(exam_scores.index))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "id": "b4ac5cd1-a3d6-4f68-9e04-5e4cb6b3271a",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Data types:\n",
+      " Math       int64\n",
+      "Science    int64\n",
+      "English    int64\n",
+      "History    int64\n",
+      "dtype: object\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(\"Data types:\\n\", exam_scores.dtypes)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "id": "54c63bbf-7c1d-4e58-bc54-37a4e89ad747",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Missing values:\n",
+      " Math       0\n",
+      "Science    0\n",
+      "English    0\n",
+      "History    0\n",
+      "dtype: int64\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(\"Missing values:\\n\", exam_scores.isnull().sum())"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "id": "c01ff4a3-a8f4-4716-8e35-725f4db59493",
+   "metadata": {},
+   "outputs": [
+    {
+     "ename": "KeyError",
+     "evalue": "'Student 3'",
+     "output_type": "error",
+     "traceback": [
+      "\u001b[1;31m---------------------------------------------------------------------------\u001b[0m",
+      "\u001b[1;31mKeyError\u001b[0m                                  Traceback (most recent call last)",
+      "File \u001b[1;32m~\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\pandas\\core\\indexes\\base.py:3805\u001b[0m, in \u001b[0;36mIndex.get_loc\u001b[1;34m(self, key)\u001b[0m\n\u001b[0;32m   3804\u001b[0m \u001b[38;5;28;01mtry\u001b[39;00m:\n\u001b[1;32m-> 3805\u001b[0m     \u001b[38;5;28;01mreturn\u001b[39;00m \u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43m_engine\u001b[49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mget_loc\u001b[49m\u001b[43m(\u001b[49m\u001b[43mcasted_key\u001b[49m\u001b[43m)\u001b[49m\n\u001b[0;32m   3806\u001b[0m \u001b[38;5;28;01mexcept\u001b[39;00m \u001b[38;5;167;01mKeyError\u001b[39;00m \u001b[38;5;28;01mas\u001b[39;00m err:\n",
+      "File \u001b[1;32mindex.pyx:167\u001b[0m, in \u001b[0;36mpandas._libs.index.IndexEngine.get_loc\u001b[1;34m()\u001b[0m\n",
+      "File \u001b[1;32mindex.pyx:196\u001b[0m, in \u001b[0;36mpandas._libs.index.IndexEngine.get_loc\u001b[1;34m()\u001b[0m\n",
+      "File \u001b[1;32mpandas\\\\_libs\\\\hashtable_class_helper.pxi:7081\u001b[0m, in \u001b[0;36mpandas._libs.hashtable.PyObjectHashTable.get_item\u001b[1;34m()\u001b[0m\n",
+      "File \u001b[1;32mpandas\\\\_libs\\\\hashtable_class_helper.pxi:7089\u001b[0m, in \u001b[0;36mpandas._libs.hashtable.PyObjectHashTable.get_item\u001b[1;34m()\u001b[0m\n",
+      "\u001b[1;31mKeyError\u001b[0m: 'Student 3'",
+      "\nThe above exception was the direct cause of the following exception:\n",
+      "\u001b[1;31mKeyError\u001b[0m                                  Traceback (most recent call last)",
+      "Cell \u001b[1;32mIn[12], line 1\u001b[0m\n\u001b[1;32m----> 1\u001b[0m \u001b[38;5;28mprint\u001b[39m(\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mStudent 3 scores:\u001b[39m\u001b[38;5;130;01m\\n\u001b[39;00m\u001b[38;5;124m\"\u001b[39m, \u001b[43mexam_scores\u001b[49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mloc\u001b[49m\u001b[43m[\u001b[49m\u001b[38;5;124;43m\"\u001b[39;49m\u001b[38;5;124;43mStudent 3\u001b[39;49m\u001b[38;5;124;43m\"\u001b[39;49m\u001b[43m]\u001b[49m)\n",
+      "File \u001b[1;32m~\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\pandas\\core\\indexing.py:1191\u001b[0m, in \u001b[0;36m_LocationIndexer.__getitem__\u001b[1;34m(self, key)\u001b[0m\n\u001b[0;32m   1189\u001b[0m maybe_callable \u001b[38;5;241m=\u001b[39m com\u001b[38;5;241m.\u001b[39mapply_if_callable(key, \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mobj)\n\u001b[0;32m   1190\u001b[0m maybe_callable \u001b[38;5;241m=\u001b[39m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39m_check_deprecated_callable_usage(key, maybe_callable)\n\u001b[1;32m-> 1191\u001b[0m \u001b[38;5;28;01mreturn\u001b[39;00m \u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43m_getitem_axis\u001b[49m\u001b[43m(\u001b[49m\u001b[43mmaybe_callable\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43maxis\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43maxis\u001b[49m\u001b[43m)\u001b[49m\n",
+      "File \u001b[1;32m~\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\pandas\\core\\indexing.py:1431\u001b[0m, in \u001b[0;36m_LocIndexer._getitem_axis\u001b[1;34m(self, key, axis)\u001b[0m\n\u001b[0;32m   1429\u001b[0m \u001b[38;5;66;03m# fall thru to straight lookup\u001b[39;00m\n\u001b[0;32m   1430\u001b[0m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39m_validate_key(key, axis)\n\u001b[1;32m-> 1431\u001b[0m \u001b[38;5;28;01mreturn\u001b[39;00m \u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43m_get_label\u001b[49m\u001b[43m(\u001b[49m\u001b[43mkey\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43maxis\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43maxis\u001b[49m\u001b[43m)\u001b[49m\n",
+      "File \u001b[1;32m~\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\pandas\\core\\indexing.py:1381\u001b[0m, in \u001b[0;36m_LocIndexer._get_label\u001b[1;34m(self, label, axis)\u001b[0m\n\u001b[0;32m   1379\u001b[0m \u001b[38;5;28;01mdef\u001b[39;00m\u001b[38;5;250m \u001b[39m\u001b[38;5;21m_get_label\u001b[39m(\u001b[38;5;28mself\u001b[39m, label, axis: AxisInt):\n\u001b[0;32m   1380\u001b[0m     \u001b[38;5;66;03m# GH#5567 this will fail if the label is not present in the axis.\u001b[39;00m\n\u001b[1;32m-> 1381\u001b[0m     \u001b[38;5;28;01mreturn\u001b[39;00m \u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mobj\u001b[49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mxs\u001b[49m\u001b[43m(\u001b[49m\u001b[43mlabel\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43maxis\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43maxis\u001b[49m\u001b[43m)\u001b[49m\n",
+      "File \u001b[1;32m~\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\pandas\\core\\generic.py:4301\u001b[0m, in \u001b[0;36mNDFrame.xs\u001b[1;34m(self, key, axis, level, drop_level)\u001b[0m\n\u001b[0;32m   4299\u001b[0m             new_index \u001b[38;5;241m=\u001b[39m index[loc]\n\u001b[0;32m   4300\u001b[0m \u001b[38;5;28;01melse\u001b[39;00m:\n\u001b[1;32m-> 4301\u001b[0m     loc \u001b[38;5;241m=\u001b[39m \u001b[43mindex\u001b[49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mget_loc\u001b[49m\u001b[43m(\u001b[49m\u001b[43mkey\u001b[49m\u001b[43m)\u001b[49m\n\u001b[0;32m   4303\u001b[0m     \u001b[38;5;28;01mif\u001b[39;00m \u001b[38;5;28misinstance\u001b[39m(loc, np\u001b[38;5;241m.\u001b[39mndarray):\n\u001b[0;32m   4304\u001b[0m         \u001b[38;5;28;01mif\u001b[39;00m loc\u001b[38;5;241m.\u001b[39mdtype \u001b[38;5;241m==\u001b[39m np\u001b[38;5;241m.\u001b[39mbool_:\n",
+      "File \u001b[1;32m~\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\pandas\\core\\indexes\\base.py:3812\u001b[0m, in \u001b[0;36mIndex.get_loc\u001b[1;34m(self, key)\u001b[0m\n\u001b[0;32m   3807\u001b[0m     \u001b[38;5;28;01mif\u001b[39;00m \u001b[38;5;28misinstance\u001b[39m(casted_key, \u001b[38;5;28mslice\u001b[39m) \u001b[38;5;129;01mor\u001b[39;00m (\n\u001b[0;32m   3808\u001b[0m         \u001b[38;5;28misinstance\u001b[39m(casted_key, abc\u001b[38;5;241m.\u001b[39mIterable)\n\u001b[0;32m   3809\u001b[0m         \u001b[38;5;129;01mand\u001b[39;00m \u001b[38;5;28many\u001b[39m(\u001b[38;5;28misinstance\u001b[39m(x, \u001b[38;5;28mslice\u001b[39m) \u001b[38;5;28;01mfor\u001b[39;00m x \u001b[38;5;129;01min\u001b[39;00m casted_key)\n\u001b[0;32m   3810\u001b[0m     ):\n\u001b[0;32m   3811\u001b[0m         \u001b[38;5;28;01mraise\u001b[39;00m InvalidIndexError(key)\n\u001b[1;32m-> 3812\u001b[0m     \u001b[38;5;28;01mraise\u001b[39;00m \u001b[38;5;167;01mKeyError\u001b[39;00m(key) \u001b[38;5;28;01mfrom\u001b[39;00m\u001b[38;5;250m \u001b[39m\u001b[38;5;21;01merr\u001b[39;00m\n\u001b[0;32m   3813\u001b[0m \u001b[38;5;28;01mexcept\u001b[39;00m \u001b[38;5;167;01mTypeError\u001b[39;00m:\n\u001b[0;32m   3814\u001b[0m     \u001b[38;5;66;03m# If we have a listlike key, _check_indexing_error will raise\u001b[39;00m\n\u001b[0;32m   3815\u001b[0m     \u001b[38;5;66;03m#  InvalidIndexError. Otherwise we fall through and re-raise\u001b[39;00m\n\u001b[0;32m   3816\u001b[0m     \u001b[38;5;66;03m#  the TypeError.\u001b[39;00m\n\u001b[0;32m   3817\u001b[0m     \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39m_check_indexing_error(key)\n",
+      "\u001b[1;31mKeyError\u001b[0m: 'Student 3'"
+     ]
+    }
+   ],
+   "source": [
+    "print(\"Student 3 scores:\\n\", exam_scores.loc[\"Student 3\"])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 13,
+   "id": "de6fb1a6-2f60-4d68-8bd4-1d35b6941598",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Student3 scores:\n",
+      " Math       92\n",
+      "Science    89\n",
+      "English    78\n",
+      "History    80\n",
+      "Name: Student3, dtype: int64\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(\"Student3 scores:\\n\", exam_scores.loc[\"Student3\"])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 14,
+   "id": "1b8fedf0-73c6-488f-b731-fe219883533f",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Math scores:\n",
+      " Student1    85\n",
+      "Student2    78\n",
+      "Student3    92\n",
+      "Student4    60\n",
+      "Student5    74\n",
+      "Student6    88\n",
+      "Name: Math, dtype: int64\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(\"Math scores:\\n\", exam_scores[\"Math\"])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 15,
+   "id": "77081707-9d52-47c5-b0cc-9bd1d85f88e4",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Selected scores:\n",
+      "           Science  English\n",
+      "Student1       80       75\n",
+      "Student4       65       55\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(\"Selected scores:\\n\", exam_scores.loc[[\"Student1\", \"Student4\"], [\"Science\", \"English\"]])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 16,
+   "id": "da31056c-7ffa-45a9-be05-d3f12ba167ec",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "First 4 students, first 3 subjects:\n",
+      "           Math  Science  English\n",
+      "Student1    85       80       75\n",
+      "Student2    78       82       85\n",
+      "Student3    92       89       78\n",
+      "Student4    60       65       55\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(\"First 4 students, first 3 subjects:\\n\", exam_scores.iloc[:4, :3])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 17,
+   "id": "a8e6dcd2-c1d5-4129-b832-850cfd51e089",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Student5 History score: 68\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(\"Student5 History score:\", exam_scores.loc[\"Student5\", \"History\"])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 18,
+   "id": "8a3e593d-31ed-4fea-93a5-db63e2e8e39f",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Updated scores:\n",
+      "           Math  Science  English  History\n",
+      "Student1    85       80       75       70\n",
+      "Student2    85       82       85       75\n",
+      "Student3    92       89       78       80\n",
+      "Student4    60       65       55       50\n",
+      "Student5    74       70       72       68\n",
+      "Student6    88       90       88       82\n"
+     ]
+    }
+   ],
+   "source": [
+    "exam_scores.at[\"Student2\", \"Math\"] = 85\n",
+    "print(\"Updated scores:\\n\", exam_scores)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 19,
+   "id": "493df301-b90d-43d6-85ce-c5082251f610",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "After adding Student7:\n",
+      "           Math  Science  English  History\n",
+      "Student1    85       80       75       70\n",
+      "Student2    85       82       85       75\n",
+      "Student3    92       89       78       80\n",
+      "Student4    60       65       55       50\n",
+      "Student5    74       70       72       68\n",
+      "Student6    88       90       88       82\n",
+      "Student7    90       85       88       80\n"
+     ]
+    }
+   ],
+   "source": [
+    "exam_scores.loc[\"Student7\"] = [90, 85, 88, 80]\n",
+    "print(\"After adding Student7:\\n\", exam_scores)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 20,
+   "id": "2b36048f-6b98-44cd-95c0-ad378727d054",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "After adding bonus marks:\n",
+      "           Math  Science  English  History\n",
+      "Student1    90       85       80       75\n",
+      "Student2    90       87       90       80\n",
+      "Student3    97       94       83       85\n",
+      "Student4    65       70       60       55\n",
+      "Student5    79       75       77       73\n",
+      "Student6    93       95       93       87\n",
+      "Student7    95       90       93       85\n"
+     ]
+    }
+   ],
+   "source": [
+    "exam_scores += 5\n",
+    "print(\"After adding bonus marks:\\n\", exam_scores)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 21,
+   "id": "504aeaa8-0a22-4af3-88a5-a4fd7d1c1591",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "After deducting marks from Student4:\n",
+      "           Math  Science  English  History\n",
+      "Student1    90       85       80       75\n",
+      "Student2    90       87       90       80\n",
+      "Student3    97       94       83       85\n",
+      "Student4    62       67       57       52\n",
+      "Student5    79       75       77       73\n",
+      "Student6    93       95       93       87\n",
+      "Student7    95       90       93       85\n"
+     ]
+    }
+   ],
+   "source": [
+    "exam_scores.loc[\"Student4\"] -= 3\n",
+    "print(\"After deducting marks from Student4:\\n\", exam_scores)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 22,
+   "id": "d9d66280-b63e-4e48-82eb-f6987d08cf02",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Percentage scores:\n",
+      "           Math  Science  English  History\n",
+      "Student1  90.0     85.0     80.0     75.0\n",
+      "Student2  90.0     87.0     90.0     80.0\n",
+      "Student3  97.0     94.0     83.0     85.0\n",
+      "Student4  62.0     67.0     57.0     52.0\n",
+      "Student5  79.0     75.0     77.0     73.0\n",
+      "Student6  93.0     95.0     93.0     87.0\n",
+      "Student7  95.0     90.0     93.0     85.0\n"
+     ]
+    }
+   ],
+   "source": [
+    "percentage_scores = (exam_scores / 100) * 100\n",
+    "print(\"Percentage scores:\\n\", percentage_scores)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 23,
+   "id": "500d1fea-e36c-4c24-b198-931c19505fc7",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Total marks per student:\n",
+      " Student1    330\n",
+      "Student2    347\n",
+      "Student3    359\n",
+      "Student4    238\n",
+      "Student5    304\n",
+      "Student6    368\n",
+      "Student7    363\n",
+      "dtype: int64\n"
+     ]
+    }
+   ],
+   "source": [
+    "total_marks_per_student = exam_scores.sum(axis=1)\n",
+    "print(\"Total marks per student:\\n\", total_marks_per_student)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 24,
+   "id": "d13d33d2-32c3-4ace-83e2-cd8dd8676de8",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Total marks per subject:\n",
+      " Math       606\n",
+      "Science    593\n",
+      "English    573\n",
+      "History    537\n",
+      "dtype: int64\n"
+     ]
+    }
+   ],
+   "source": [
+    "total_marks_per_subject = exam_scores.sum(axis=0)\n",
+    "print(\"Total marks per subject:\\n\", total_marks_per_subject)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 25,
+   "id": "a6297233-b0f0-47aa-9a15-43543b7e0348",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Student with the highest total marks: Student6\n"
+     ]
+    }
+   ],
+   "source": [
+    "top_student = total_marks_per_student.idxmax()\n",
+    "print(\"Student with the highest total marks:\", top_student)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 26,
+   "id": "da633535-24e7-4b99-9012-a72499b834ef",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Subject with the lowest total marks: History\n"
+     ]
+    }
+   ],
+   "source": [
+    "lowest_subject = total_marks_per_subject.idxmin()\n",
+    "print(\"Subject with the lowest total marks:\", lowest_subject)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 27,
+   "id": "6576f3b3-578c-419b-9edc-3e5833c78548",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Average marks per student:\n",
+      " Student1    82.50\n",
+      "Student2    86.75\n",
+      "Student3    89.75\n",
+      "Student4    59.50\n",
+      "Student5    76.00\n",
+      "Student6    92.00\n",
+      "Student7    90.75\n",
+      "dtype: float64\n"
+     ]
+    }
+   ],
+   "source": [
+    "average_marks_per_student = exam_scores.mean(axis=1)\n",
+    "print(\"Average marks per student:\\n\", average_marks_per_student)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "7909d707-0e44-4bf1-82be-dc71a90ef8b2",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.13.1"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
